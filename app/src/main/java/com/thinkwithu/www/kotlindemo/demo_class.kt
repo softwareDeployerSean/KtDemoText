@@ -172,6 +172,64 @@ class C : A(), B { //子类c继承A和实现B,如果A和B有相同的方法，�
 
 }
 
+interface t {
+    var a: Int //变量不允许被初始化，只能是抽象的
+    fun b()
+    fun c() { //方法可以有默认实现
+        println("c")
+    }
+
+}
+
+interface tf {
+    fun b() {
+        println("tf b")
+    }
+
+    fun c() {
+        println("tf  c")
+    }
+
+}
+
+
+class imp : t {  //实现接口，用: ，
+    override var a: Int = 5//子类必须重写接口的属性值
+
+    override fun b() { //没有默认实现的方法，必须重写
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}
+
+class imp1 : t, tf {
+    override var a: Int = 88
+
+    override fun b() {//重写接口没被实现的方法，必须重写
+        super<tf>.b()
+    }
+
+    override fun c() {//重写 两个接口都有的方法 必须重写
+        super<t>.c()
+        super<tf>.c()
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
