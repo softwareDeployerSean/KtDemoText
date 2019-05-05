@@ -13,8 +13,33 @@ fun main() {
      var fi = Five("", 1, "")*/
     /* var a = eight.nine(10).foo()
      println(a)*/
-    var c = C()
-    c.foo()
+//    var c = C()
+//    c.foo()
+
+//    val user = User();
+//    user.extension()
+
+    /* val intarray = intArrayOf(4, 9, 6)
+     intarray.extecsion()
+     for (i in intarray) {
+         println(i)
+     }*/
+//    entity(v())
+//    val yn = yun();
+//    yn.foo()
+
+//    var a: String? = null
+//    println(a.toString())
+
+//    myclass.foo()
+//    moon().sunDo(sun(
+//    bb().bbDo(aa())
+//    pp().dp(tt1())
+//    pp1().dp(tt())
+    val jack = mydata("jack", 18)
+    val oldjack = jack.copy(age = 45)//copy方法对
+    println(jack)
+    println(oldjack)
 
 }
 
@@ -214,6 +239,210 @@ class imp1 : t, tf {
     }
 
 }
+
+
+class User//空类
+
+//作用域在顶级包下
+fun User.extension() {//扩展函数  以fun修饰，以类名.方法名进行扩展，对原类不产生任何影响
+    println("我是扩展函数")
+}
+
+fun IntArray.extecsion() { //有了扩展函数之后 就可以很方便的对系统函数进行扩展了
+    var a = this[0]
+    this[0] = this[2]
+    this[2] = a
+}
+
+//扩展函数是静态解析的，并不是接收者类型的虚拟成员,到底执行哪个扩展函数，是由调用者直接决定的，而不是由动态调用者决定，
+//换句话说如果是父类调用扩展函数，而子类也有该扩展函数，当传入的对象是子类时，也是有父类执行扩展函数
+open class w
+
+class v : w()
+
+fun w.foo() {
+    println("我是w的扩展函数")
+}
+
+fun v.foo() {
+    println("我是v的扩展函数")
+}
+
+fun entity(w1: w) {
+    w1.foo()
+}
+
+
+//当扩展函数和成员函数相同时，会优先调用成员函数
+class yun {
+    fun foo() {
+        println("成员")
+    }
+}
+
+fun yun.foo() {
+    println("扩展")
+}
+
+//null也可以有扩展函数
+fun Any?.haha() {
+
+}
+
+//扩展属性 ,只能支持val，由于没有filed，所以不能被初始化，只能显示初始化
+//只能定义在类和kt文件中，不允许定义在方法中
+val User.to: Int
+    get() {
+        return 4
+    }
+
+fun User.text() {
+    val a = 8
+    println(this.to)
+}
+
+
+//伴生对象
+class myclass {
+    companion object {
+
+    }
+}
+
+fun myclass.Companion.foo() {
+    println("我是伴生对象的扩展方法啊")
+}
+
+
+class sun {
+    fun speak() {
+        println("我是太阳，在说话")
+    }
+}
+
+
+class moon {
+
+    fun hahaa() {
+        println("我是月亮的哈哈")
+    }
+
+    //当一个类的扩展函数是另一个类的成员函数时，这个函数内既可以调用扩展接受者的成员函数，也可以调用分发接收者的成员函数
+    //这个方法的作用域只能在该类中
+    fun sun.sing() {
+        speak()
+        hahaa()
+        println("我是太阳，在唱歌")
+    }
+
+    fun sunDo(s: sun) {
+        s.sing()
+    }
+
+
+}
+
+
+class aa {
+    fun foo() {
+        println("aa foo")
+    }
+}
+
+class bb {
+    fun foo() {
+        println("bb foo")
+    }
+
+    fun aa.other() {
+        foo() //当扩展接受者和分发接收者都有同样的方法时，会优先调用扩展接收者
+        this@bb.foo()//可以使用this关键字@类名调用分发接收者的方法
+        println("other")
+    }
+
+    fun bbDo(a: aa) {
+        a.other()
+    }
+
+}
+
+
+open class tt
+
+class tt1 : tt()
+
+
+open class pp {
+
+    open fun tt.dt() {
+        println("pp里面的tt")
+    }
+
+    open fun tt1.dt() {
+        println("pp里面的tt1")
+    }
+
+    fun dp(t: tt) { //针对扩展接收者，仍然是静态的，不会因为动态类型而改变
+        t.dt()
+    }
+}
+
+
+//针对扩展接收者和分发接收者而言，扩展接收者重写之后也是属于静态解析，而分发接收者 则不同
+class pp1 : pp() {
+    override fun tt.dt() {  //方法被重写了，用pp1去调用也会生效，
+        println("pp1 里面的tt")
+    }
+
+    override fun tt1.dt() {
+        println("pp1 里面的tt1")
+    }
+
+}
+
+//数据类 用data 关键字修饰，主构造方法必须有参数，可以用copy方法复制数据对象的数据
+data class mydata(val name: String, val age: Int)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
