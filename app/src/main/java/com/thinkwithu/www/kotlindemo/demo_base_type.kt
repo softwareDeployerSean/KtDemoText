@@ -133,12 +133,10 @@ fun change(vararg v: String) {
 
 //var 修饰可变变量，
 var cc: String = "7"
-//编译器自动识别类型
-var aa = 4
-//val 修饰常量
-val bb = 8
 
 fun text() {
+//编译器自动识别类型
+    var aa = 4
     aa += 1
 }
 
