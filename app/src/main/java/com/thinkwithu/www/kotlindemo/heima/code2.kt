@@ -39,7 +39,7 @@ fun han_shu_shi() {
     })
 }
 
-fun add(a: Int, b: Int): Int {
+fun add(a: String): Int {
     return a + b
 }
 
