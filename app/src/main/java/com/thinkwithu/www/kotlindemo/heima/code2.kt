@@ -1,4 +1,4 @@
-package com.thinkwithu.www.kotlindemo.heima2
+package com.thinkwithu.www.kotlindemo.heima26
 
 /**
  * Author: sean
@@ -39,8 +39,8 @@ fun han_shu_shi() {
     })
 }
 
-fun add(a: String): Int {
-    return a + b
+fun add(a: Int,b:Int): Int {
+    return a
 }
 
 //可变参数 vararg
